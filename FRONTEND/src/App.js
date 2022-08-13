@@ -19,6 +19,7 @@ function App() {
   const [cItems, setCItems] = useState([])
   async function getCartItem(){
     const data = await (await api.get('/get/cart/items')).data
+    console.log(data)
     const email = sessionStorage.getItem('email')
     const targetOrders = data.filter(item=> item.email == email)
     setCItems(targetOrders)

@@ -39,7 +39,7 @@ const images = importAll(require.context('../../IMAGES', false, /\.(png|jpe?g|sv
 // const [totalV, setTotalV] = useState([])
 function ORDERS({name}){
   const totalValues = []
-    const newList =   orders.filter(order=> order.cusName == name)
+    const newList =   orders.filter(order=> order.cusname == name)
     let total = 0
     for(let i = 0; i<newList.length; i++){
       const item = newList[i]

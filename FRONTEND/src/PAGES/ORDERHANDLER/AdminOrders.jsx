@@ -23,6 +23,7 @@ useEffect(()=>{
 
 async function getOrders(){
   const data = await (await api.get('/get/received/orders')).data
+  console.log(data)
   setOrders(data)
 }
 useEffect(()=>{
@@ -41,7 +42,12 @@ const images = importAll(require.context('../../IMAGES', false, /\.(png|jpe?g|sv
 // const [totalV, setTotalV] = useState([])
 function ORDERS({name}){
   const totalValues = []
-    const newList =   orders.filter(order=> order.cusName == name)
+    const newList =   orders.filter(order=> order.cusname == name)
+    // console.log(newList)
+    console.log(orders)
+    // console.log(newList)
+    // console.log(orders)
+    // console.log(name)
     let total = 0
     for(let i = 0; i<newList.length; i++){
       const item = newList[i]

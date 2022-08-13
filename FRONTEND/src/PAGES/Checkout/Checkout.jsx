@@ -23,6 +23,7 @@ function Checkout({ cItems }) {
   async function sendCartOrders(){
     cItems.map(async (item)=>{
         console.log(item)
+        console.log(item)
         const data = await (await api.post('/dir/dalabyada', {...item, cusName:magac})).data
         alertM(data.status)
     })
