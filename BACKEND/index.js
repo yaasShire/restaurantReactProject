@@ -23,11 +23,11 @@ app.use(express.json())
 app.use(bodyparser.json())
 const Pool = require('pg').Pool
 const conn  = new Pool({
-    user:process.env.PGUSER,
-    password:process.env.PGPASSWORD,
-    database:process.env.PGDATABASE,
-    host:process.env.PGPORT,
-    port:process.env.PGPORT
+    user:'postgres',
+    password:'123',
+    database:'maqaaxi',
+    host:'localhost',
+    port:5432
 
 })
 
