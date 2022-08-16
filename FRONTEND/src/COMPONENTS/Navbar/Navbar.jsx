@@ -21,7 +21,7 @@ export const Navbar = () => {
     <Menu anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right' }} id={mobileMenuId} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }} open={isMobileMenuOpen} onClose={handleMobileMenuClose}>
       <MenuItem>
         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-          <Badge badgeContent={1} color="secondary">
+          <Badge  color="secondary">
             <ShoppingCart />
           </Badge>
         </IconButton>

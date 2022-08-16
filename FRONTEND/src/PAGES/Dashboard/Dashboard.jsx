@@ -12,6 +12,7 @@ export default function Dashboard() {
     const [supplier, setSupplier] = useState('')
     const [alertM, setAlertM] = useState('')
     const [fillSelect, setFillSelect] = useState([])
+    const [category, setCategory] = useState('')
     // useEffect(()=>{
     //      getSuppliers()
     // }, [])
@@ -25,6 +26,11 @@ export default function Dashboard() {
         
     // console.log(supplier)
     //   }
+    // if(sessionStorage.getItem('email') === 'admin'){
+    //   return;
+    //  }else{
+    //    window.location.replace('/')
+    //  }
         
   return (
     // <Paper>
@@ -33,25 +39,34 @@ export default function Dashboard() {
     <form action='http://localhost:2000/api/v1/dir/product' method='post' encType='multipart/form-data' style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', width:'100%', margin:'0', marginLeft:'70px', marginRight:'200px', flexDirection:'column'}}>
     <Typography  align='center' variant="h4" gutterBottom>DIIWAANGELI </Typography>
     
-        <Grid container justify="center" style={{fontSize:'23px', background:"gray", width:'70%', height:'40%', padding:'5px', borderRadius:'5px'}} >
+        <Grid container justify="center" style={{fontSize:'23px', background:"gray", width:'70%', height:'60%', padding:'20px', color:'white', borderRadius:'5px'}} >
           <Grid item xs={12} sm={6} md={4} style={{display:'flex', flexDirection:'column'}} >
             <label htmlFor="magac">Magac</label>
-            <input  onChange={(e)=> setMagac(e.target.value)} type="text" name='magac' required style={{width:'250px', height:'20px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
+            <input  onChange={(e)=> setMagac(e.target.value)} type="text" name='magac' required style={{width:'300px', height:'40px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
           </Grid>
           <Grid  item xs={12} sm={6} md={4} style={{display:'flex', flexDirection:'column'}}  >
             <label htmlFor="qiimahaSheygiiba">Qiimaha Sheygiiba</label>
-          <input onChange={(e)=> setQiimahaSheygiiba(e.target.value)} type="number" name='qiimahaSheygiiba' required style={{width:'250px', height:'20px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
+          <input onChange={(e)=> setQiimahaSheygiiba(e.target.value)} type="number" name='qiimahaSheygiiba' required style={{width:'300px', height:'40px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
           </Grid>
           <Grid item xs={12} sm={6} md={4} style={{display:'flex', flexDirection:'column'}} >
             <label htmlFor="tirada">Tirada</label>
-          <input onChange={(e)=> setTirada(e.target.value)} type="text" required name='tirada'  style={{width:'250px', height:'20px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
+          <input onChange={(e)=> setTirada(e.target.value)} type="text" required name='tirada'  style={{width:'300px', height:'40px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={6} style={{display:'flex', flexDirection:'column'}} >
           <label htmlFor="tirada">Faahfaahin</label>
-          <input onChange={(e)=> setFaahfaahin(e.target.value)} type="faahfaahin" name='faahfaahin' style={{width:'250px', height:'20px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
+          <input onChange={(e)=> setFaahfaahin(e.target.value)} required type="faahfaahin" name='faahfaahin' style={{width:'300px', height:'40px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
-          <input type="file" name='sawir' style={{width:'250px', height:'20px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
+          <input type="file" name='sawir' required style={{width:'400px', height:'40px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <select name="category" required style={{width:'auto', height:'40px'}}>
+              <option value="">NOOCA</option>
+              <option value="PIZZA">PIZAA</option>
+              <option value="DOORO">DOORO</option>
+              <option value="BARIIS">BARIIS</option>
+              <option value='BAASTO'>BAASTO</option>
+            </select>
           </Grid>
           <Grid item xs={12} sm={12}  md={12} lg={6}>
             <Button variant='contained' type='submit' style={{marginTop:'30px'}}>DIIWAANGELI</Button>

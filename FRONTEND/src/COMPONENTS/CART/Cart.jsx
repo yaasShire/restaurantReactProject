@@ -6,7 +6,13 @@ import CartItem from './CartItem/CartItem';
 import useStyles from './style';
 
 const Cart = ({ cItem, removeItem, updateQuantity, total, getTotal}) => {
+  if(sessionStorage.getItem('email')){
+  
+  }else{
+    window.location.replace('/')
+  }
   const classes = useStyles();
+  console.log(cItem)
   const handleEmptyCart = () => onEmptyCart();
 
   const renderEmptyCart = () => (

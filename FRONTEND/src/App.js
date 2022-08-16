@@ -10,6 +10,8 @@ import Cart from './COMPONENTS/CART/Cart';
 import Checkout from './PAGES/Checkout/Checkout';
 import AdminOrders from './PAGES/ORDERHANDLER/AdminOrders';
 import FulfilledOr from './PAGES/FulfilledOrders/FulfilledOr';
+import Navigation from './COMPONENTS/ModernNavigation/Navigation';
+import Home from './PAGES/Homepage/Home';
 function App() {
   const [products, setProducts] = useState([])
   async function getAllProducts(){
@@ -19,7 +21,6 @@ function App() {
   const [cItems, setCItems] = useState([])
   async function getCartItem(){
     const data = await (await api.get('/get/cart/items')).data
-    console.log(data)
     const email = sessionStorage.getItem('email')
     const targetOrders = data.filter(item=> item.email == email)
     setCItems(targetOrders)
@@ -59,6 +60,7 @@ function App() {
       <Routes>
       <Route path="/signUp" element={<SignUp />} />
       <Route path="/" element={<Login />} />
+      {/* { sessionStorage.getItem('email') &&} */}
       <Route path="/panel" element={<PanelAd />} />
       <Route path="/adminOrders" element={<AdminOrders />} />
       <Route path="/diiwaangelinta" element={<Dashboard />} />
@@ -67,6 +69,9 @@ function App() {
       <Route path="/cart" element={<Cart getTotal={getTotal} total={total} updateQuantity={updateQuantity} cItem={cItems} removeItem={removeItem} />} /> 
       <Route path="/checkout" element={<Checkout cItems={cItems} />} />
       <Route path="/fullFilled" element={<FulfilledOr  />} />
+      <Route path="/Navigation" element={<Navigation  />} />
+      <Route path="/home" element={<Home  />} />
+      
 
       </Routes>
     </Router>

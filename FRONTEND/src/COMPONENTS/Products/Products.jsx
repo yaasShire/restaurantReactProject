@@ -5,23 +5,30 @@ import Product from './Product/Product';
 import useStyles from './style'
 import {useLocation } from 'react-router-dom';
 
-import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { ShoppingCart } from '@material-ui/icons';
-
+import Navigation from '../ModernNavigation/Navigation'
+console.log(sessionStorage.getItem('email'))
 const Products = ({ products, getCartItem }) => {
   const classes = useStyles();
 console.log(products)
   if (!products.length) return <p>Loading...</p>;
-
+if(sessionStorage.getItem('email')){
+  
+}else{
+  window.location.replace('/')
+}
   return (
+    <>
+    <Navigation style />
     <main className={classes.content}>
          {location.pathname === '/badeeco' && (
-          <div className={classes.button} style={{position:'fixed', right:'10px', top:'10px' }}>
+          <div className={classes.button} style={{position:'fixed', right:'10px', top:'50px', color:'red', width:'50px', height:'50px' }}>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit" onClick={()=>{
               getCartItem()
             }}>
-              <Badge badgeContent={1} color="secondary">
+              <Badge  color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
@@ -37,6 +44,7 @@ console.log(products)
         ))}
       </Grid>
     </main>
+    </>
   );
 };
 

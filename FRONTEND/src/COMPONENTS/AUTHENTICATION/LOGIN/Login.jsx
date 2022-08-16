@@ -17,11 +17,22 @@ function Login() {
         setUsers(data)
         console.log(data)
     }
+    
+//  if(window.location == '/'){
+  function setAuth(){
+
+    sessionStorage.setItem('email', '')
+    
+  }
+  useEffect(()=>{
+   setAuth()
+  }, [])
+//  }
     function findTargetUser(){
         const targetUser = users.find(user=> user.email == email && user.password == password)
         if(targetUser){
             sessionStorage.setItem('email', targetUser.email)
-           window.location.replace('/badeeco')
+           window.location.replace('/home')
         }else{
                    setAlertM(true)
                 }

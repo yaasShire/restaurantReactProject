@@ -38,6 +38,11 @@ const [q, setQ] = useState(0)
 
 
 const images = importAll(require.context('../../IMAGES', false, /\.(png|jpe?g|svg)$/));
+if(sessionStorage.getItem('email') === 'admin'){
+  return;
+ }else{
+   window.location.replace('/')
+ }
 
 // const [totalV, setTotalV] = useState([])
 function ORDERS({name}){

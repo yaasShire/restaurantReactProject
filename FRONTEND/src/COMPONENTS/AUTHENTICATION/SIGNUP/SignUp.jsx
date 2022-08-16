@@ -26,6 +26,7 @@ function SignUp() {
         }
     }
     const classes = useStyles()
+    
   return (
     <div style={{ height:'100vh', display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
     <Typography variant="h4" style={{fontFamily:'Indie Flower'}}  align='center'>SIGN UP</Typography>
