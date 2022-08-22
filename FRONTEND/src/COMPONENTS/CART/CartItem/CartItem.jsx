@@ -29,7 +29,7 @@ const [message, setMessage] = useState('')
       <CardActions className={classes.cardActions}>
         <div className={classes.buttons}>
           <input value={q || item.quantity } type="number" style={{width:'60px'}} onChange={(e)=>{
-                 if(e.target.value <=0){
+                 if(e.target.value <0){
                     e.target.value=1
 
                  }else{
