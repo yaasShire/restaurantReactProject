@@ -4,7 +4,7 @@ import { AddShoppingCart } from '@material-ui/icons';
 import { api } from '../../axiosSetup';
 import useStyles from './style';
 
-const Product = ({ product}) => {
+const Product = ({ product, getTotalQuantity}) => {
 
   const classes = useStyles();
   function importAll(r) {
@@ -21,7 +21,7 @@ const [message, setMessage] = useState('')
       console.log(magac, price, sawir)
       const data = await api.post('/add/to/cart', {magac, price, sawir, email})
       setMessage(data.data)
-      alert(data.data)
+     
 
 
     }else{
@@ -46,6 +46,7 @@ const [message, setMessage] = useState('')
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label="Add to Cart"  onClick={()=>{
           addToCart(product.magac, product.price, product.image)
+          getTotalQuantity()
         }}>
           <AddShoppingCart />
         </IconButton>

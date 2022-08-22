@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import Product from './Product/Product';
 import useStyles from './style'
-import {useLocation } from 'react-router-dom';
+import { api } from '../axiosSetup';
 
+import {useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { ShoppingCart } from '@material-ui/icons';
 import Navigation from '../ModernNavigation/Navigation'
 console.log(sessionStorage.getItem('email'))
 const Products = ({ products, getCartItem }) => {
+  const [total, setTotal] = useState(0)
+  async function getTotalQuantity(){
+    const email = sessionStorage.getItem('email')
+     const data = await (await api.get('/get/total/cart/quantityy')).data
+    const actualQuantity = data.filter(product=>product.email == email)
+     setTotal(actualQuantity.length)
+  }
+  useEffect(()=>{
+     getTotalQuantity()
+  }, [])
   const classes = useStyles();
 console.log(products)
   if (!products.length) return <p>Loading...</p>;
@@ -25,11 +36,11 @@ if(sessionStorage.getItem('email')){
     <main className={classes.content}>
          {location.pathname === '/badeeco' && (
           <div className={classes.button} style={{position:'fixed', right:'10px', top:'50px', color:'red', width:'50px', height:'50px' }}>
-            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit" onClick={()=>{
+            <IconButton component={Link} to="/cart" style={{marginRight:'100px'}} aria-label="Show cart items" color="inherit" onClick={()=>{
               getCartItem()
             }}>
-              <Badge  color="secondary">
-                <ShoppingCart />
+              <Badge  badgeContent={total} color='secondary' style={{fontSize:'50px', marginRight:'100px'}} >
+                <ShoppingCart style={{color:'blue', fontSize:'40px' , marginRight:'0px'}} />
               </Badge>
             </IconButton>
           </div>
@@ -39,7 +50,7 @@ if(sessionStorage.getItem('email')){
       <Grid container justify="center" spacing={4}>
         {products.map((product) => (
           <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
-            <Product product={product}  />
+            <Product getTotalQuantity={getTotalQuantity} product={product}  />
           </Grid>
         ))}
       </Grid>

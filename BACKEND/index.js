@@ -4,6 +4,8 @@ const cors = require('cors')
 require('dotenv').config()
 app.use(cors())
 const multer= require('multer')
+// app.use(express.urlencoded());
+app.use(express.urlencoded({extended:false}))
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb)=>{
         cb(null, '../FRONTEND/src/IMAGES')
@@ -15,12 +17,9 @@ const fileStorage = multer.diskStorage({
 const upload = multer({storage:fileStorage})
 
 
-const {createConnection} = require('mysql') 
-const bodyparser = require('body-parser')
-app.use(bodyparser.urlencoded({extended:false}))
+
 app.use(express.json())
 
-app.use(bodyparser.json())
 const Pool = require('pg').Pool
 const conn  = new Pool({
     user:'postgres',
@@ -74,6 +73,7 @@ app.get('/api/v1/get/users', (req, res)=>{
         res.json(result.rows)
     })
 })
+
 app.post('/api/v1/add/to/cart', (req, res)=>{
     const data = req.body
     const sql = `INSERT INTO cart(magaca, price, image, email) VALUES('${data.magac}', ${data.price}, '${data.sawir}', '${data.email}');`
@@ -211,6 +211,74 @@ app.post('/api/v1/add/to/cart/h', (req, res)=>{
     conn.query(sql, (err)=>{
         if(err) throw err
         res.json({status:true})
+        // console.log(result.rows)
+    })
+})
+app.get('/api/v1/get/total/cart/quantity', (req, res)=>{
+    const sql = 'SELECT * FROM cart;'
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err
+        res.json(result.rows)
+    })
+})
+app.get('/api/v1/get/total/cart/quantityy', (req, res)=>{
+    const sql = 'SELECT * FROM cart;'
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err
+        res.json(result.rows)
+    })
+})
+app.get('/api/v1/get/maamul/badeeco', (req, res)=>{
+    const sql = 'SELECT * FROM products;'
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err
+        res.json(result.rows)
+    })
+
+})
+app.put('/api/v1/badal/magac/price', (req, res)=>{
+    const data = req.body
+    const sql = `UPDATE products SET magac = '${data.magac}', price = '${data.price}' WHERE id = ${data.id}`
+    conn.query(sql, (err)=>{
+        if(err) throw err 
+        res.json({status:true})
+    })
+})
+app.patch('/api/v1/delete/maamul/badeeco/tirtir', (req, res)=>{
+    const data = req.body
+    const sql = `DELETE FROM products WHERE id = ${data.id}`
+    conn.query(sql, (err)=>{
+        if(err) throw err
+        res.json({status:true})
+    })
+})
+app.get('/api/v1/get/tatget/date/orders', (req, res)=>{
+    const sql = 'SELECT * FROM orders;'
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err 
+        res.json(result.rows)
+    })
+})
+app.get('/api/v1/get/users/forget/password', (req, res)=>{
+    const sql = 'SELECT * FROM customers;'
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err
+        res.json(result.rows)
+    })
+})
+app.put('/api/v1/update/user/password', (req, res)=>{
+    const data = req.body
+    const sql = `UPDATE customers set password = '${data.password}' WHERE email = '${data.email}'`
+    conn.query(sql, (err)=>{
+        if(err) throw err
+        res.json({status:true})
+    })
+})
+app.patch('/api/v1/clear/cart', (req, res)=>{
+    const data = req.body
+    const sql = `DELETE FROM  cart WHERE email = '${data.email}'`
+    conn.query(sql, (err)=>{
+        if(err) throw err
     })
 })
 const port  = process.env.PORT || 2000

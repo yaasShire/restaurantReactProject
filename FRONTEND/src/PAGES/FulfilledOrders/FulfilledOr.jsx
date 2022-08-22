@@ -5,8 +5,12 @@ import { api } from '../../COMPONENTS/axiosSetup';
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Link } from 'react-router-dom';
 import DoneIcon from '@material-ui/icons/Done'
+import Navbar from '../../COMPONENTS/Navbar/Navbar';
 // import  getName  from './OrderedProducts'
 function FulfilledOr() {
+  if(sessionStorage.getItem('email') != 'admin@gmail.com') {
+    window.location.replace('/')
+  }
   const [orders, setOrders] = useState([])
 
   const [customer, setCustomers] = useState([])
@@ -54,7 +58,7 @@ function ORDERS({name}){
          return( newList.map(item=>{
             return (
               <>
-             <Card style={{margin:'20px'}} >
+             <Card style={{margin:'20px', padding:'20px'}} >
              <CardContent style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
              <CardMedia  image={images[item.image]} style={{width:'100px', height:'100px', borderRadius:'100%'}} />
               <Typography variant='h5' style={{fontWeight:'bold'}}>{item.magac}</Typography>
@@ -91,17 +95,25 @@ function ORDERS({name}){
    }
  }
 
+ if(!customer.length){
+  return (
+  <>
+    <Navbar />
+   <Typography variant='h4' align='center' style={{marginTop:'100px'}}>WAX DALAB AH OO LA FULIYAY MA JIRAAN.</Typography>
+  </>
 
+  )
+ }
 
   return (
+    <>
+    <Navbar />
     <div>
         
-      <Grid container style={{marginTop:'100px'}}>
-      <Grid item sm={12} xs={12} gutterBottom style={{margin:'50px', position:'absolute', right:'10px', top:'20px'}} >
-          <Link  variant='outlined' style={{textDecoration:'none', fontSize:'18px', background:'black', color:'white',  borderRadius:'5px', padding:'8px'}} to='/adminOrders'>DALABYADA AAN LA FULIN</Link>
-        </Grid>
+      <Grid container style={{marginTop:'30px', margin:'30px', minHeight:'900px', overflowY:'scroll'}}>
+     
         <Grid item sm={12} xs={12} gutterBottom style={{margin:'50px'}}>
-            <Typography variant="h5" align='center'>DALABYADA FULIYAY</Typography>
+            <Typography variant="h3" align='center'>DALABYADA FULIYAY</Typography>
         </Grid>
         
         {customer.map((cus, index)=>{
@@ -109,10 +121,11 @@ function ORDERS({name}){
 
       <Grid item sm={4} xs={12} md={3} style={{margin:'20px', position:'relative'}}>
            <Card style={{padding:'30px'}}>
-            <Typography variant='h4'>{cus.magac}</Typography>
-            <Typography variant='h5'>{cus.telephone}</Typography>
+            <Typography variant='h4'>Magac : {cus.magac}</Typography>
+            <Typography variant='h5'>Telephone : <b>{cus.telepphone}</b></Typography>
+            <Typography variant='h6'>Taariikh : <b>{new Date(cus.taariikh).toLocaleDateString()}</b></Typography>
             <ORDERS name={cus.magac} />
-            <DeleteIcon variant='contained' color='danger' style={{fontSize:'30px'}} onClick={()=>{
+            <DeleteIcon variant='contained' color='danger' style={{fontSize:'30px', cursor:'pointer'}} onClick={()=>{
               deleteCusOrder(cus.id)
             }} />
 
@@ -126,6 +139,8 @@ function ORDERS({name}){
       
       </Grid>
     </div>
+
+    </>
   )
 }
 

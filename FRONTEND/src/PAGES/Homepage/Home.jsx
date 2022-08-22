@@ -4,6 +4,7 @@ import Navigation from '../../COMPONENTS/ModernNavigation/Navigation';
 import HomeFoto from './foodBackgroundImage.jpg'
 import LocalPizzaIcon from '@material-ui/icons/LocalPizza'
 import { ShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom'
 
 import chickenIcon from '@material-ui/icons/'
 // import IMAGES from '../../IMAGES'
@@ -44,11 +45,12 @@ function Home() {
      const [targetP, setTP] = useState([])
      async function getTargetProducts(cat){
     const data = await (await api.get('/get/all/target/products')).data
-    console.log(data)
     setAllProducts(data)
+    if(cat === 'all'){
+      setAllProducts(data)
+      return
+    }
       const newList = data.filter(product=> product.category == cat)
-      
-
       console.log(cat)
       setAllProducts(newList)
       setTP(newList)
@@ -59,15 +61,34 @@ function Home() {
      async function addToCart(magac, qiimo, sawir){
         const email = sessionStorage.getItem('email')
          const data =  await api.post('/add/to/cart/h', {magac, qiimo, sawir, email})
-         if(data.status){
-            alert(data.status)
-         }
+        
+     } 
+   const [total, setTotal] = useState(0)
+     async function getTotalQuantity(){
+      const email = sessionStorage.getItem('email')
+        const data = await (await api.get('/get/total/cart/quantity')).data
+       const actualQuantity = data.filter(product=>product.email == email)
+        setTotal(actualQuantity.length)
      }
+     useEffect(()=>{
+        getTotalQuantity()
+     }, [])
 
       return (
     <>
       <Navigation />
     <div style={{margin:'40px'}}>
+    {location.pathname === '/home' && (
+          <div className={classes.button} style={{position:'fixed', right:'10px', top:'50px', color:'red', width:'70px', height:'70px' }}>
+            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit" onClick={()=>{
+              getCartItem()
+            }}>
+              <Badge badgeContent={total} color='secondary' style={{fontSize:'30px'}}  >
+                <ShoppingCart  style={{fontSize:'40px', color:'blue'}} />
+              </Badge>
+            </IconButton>
+          </div>
+          )}
       <Grid container style={{marginTop:'100px'}} spacing={10}>
         <Grid item xs={12} sm={6}>
         <Typography sx={{
@@ -83,8 +104,8 @@ function Home() {
         </Grid>
         <Grid item item xs={12} sm={12}>
             <Typography variant='h5' style={{fontSize:'30px', fontFamily:'sans-serif'}} >
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br /> Fuga explicabo harum 
-                recusandae adipisci id dignissimos qui  perspiciatis vitae laborum saepe.
+                Cunnada waa midkamida waxyaabaha ugu muhiimsan qofka in uu ka taxadiro loo baahanyahay.<br />Halkani waxaan kugu heynaa cunnooyin
+                caafimaadkooda la hubo fat kana ey ku yaryihiin colories fiicanna leh. Dalbo dooqaaga.
             </Typography>
         </Grid>
         <Grid item xs={12} sm={12} >
@@ -92,6 +113,15 @@ function Home() {
         </Grid>
       </Grid>
       <Grid container spacing={10} align='center' style={{marginRight:'100px'}}>
+      <Grid item style={{cursor:'pointer'}} xs={4} sm={3} onClick={()=>{
+            getTargetProducts('all')
+        }}>
+            <Card style={{width:'110px', height:'100px', background:'gray'}}>
+            <Typography style={{fontSize:'20px', color:'white', fontWeight:'bold'}}>DHAMAAN</Typography>          
+           
+            <i class="fa-solid fa-utensils" style={{fontSize:"60px", color:'yellow'}}></i>
+            </Card>
+        </Grid>
         {categories.map(cat=>{
             return(
         <Grid item style={{cursor:'pointer'}} xs={4} sm={3} onClick={()=>{
@@ -133,6 +163,7 @@ function Home() {
       <CardActions disableSpacing className={classes.cardActions}>
         <IconButton aria-label="Add to Cart"  onClick={()=>{
             addToCart(product.magac, product.price, product.image)
+            getTotalQuantity()
         }}>
           <ShoppingCart />
         </IconButton>

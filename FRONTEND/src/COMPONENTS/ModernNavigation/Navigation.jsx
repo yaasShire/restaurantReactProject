@@ -49,11 +49,24 @@ const Navigation = () => {
     </a>
     <div className="navbar-links">
       <ul>
-        <Link to='/cart' style={{textDecoration:'none'}}>
+        <Link to='/home' style={{textDecoration:'none'}}>
         <li ><a href="#">Home</a></li>
         </Link> 
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <Link to='/badeeco' style={{textDecoration:'none'}}>
+        <li ><a href="#">Cunooyinka</a></li> 
+        </Link> 
+        <Link to='/history' style={{textDecoration:'none'}}>
+        <li ><a href="#">XOGTA DALABYADA</a></li> 
+        </Link> 
+        {
+          sessionStorage.getItem('email') == 'admin@gmail.com' && (
+        <Link to='/panel' style={{textDecoration:'none'}}>
+        <li ><a href="#">ADMIN PANEL</a></li> 
+        </Link> 
+          )
+        }
+       
+        
       </ul>
     </div>
   </nav>

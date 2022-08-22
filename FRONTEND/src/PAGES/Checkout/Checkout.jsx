@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, CardMedia, CardContent, CardActions, IconButton, Paper } from '@material-ui/core';
 import { TextField, Typography, Grid, Button } from '@material-ui/core'
 import payment from './lacagbixin.png'
@@ -6,24 +6,35 @@ import CloseIcon from '@material-ui/icons/Close'
 import { api } from '../../COMPONENTS/axiosSetup';
 
 import useStyles from './style'
-function Checkout({ cItems }) {
+function Checkout({ cItems, getTotal, total }) {
+  if(!sessionStorage.getItem('email')){
+    window.location.replace('/')
+ }
   const [alertM, setAlertM] = useState(false)
   const [magac, setMagac] = useState('')
   const [ciwaan, setCiwaan] = useState('')
   const [telephone, setTelephone] = useState('')
-  async function postDalbadahaXogtiisa(){
-     if((magac !='' && ciwaan !='') && telephone !=''){
+  useEffect(()=>{
+      getTotal()
+  }, [])
+  async function postDalbadahaXogtiisa(e){
+    if((magac !='' && ciwaan !='') && telephone !=''){
+       e.target.href='tel:*712*610941595*' +{total} + '#'
+       console.log(total)
      const data =   await( await api.post('/xogta/dalbadaha/rasmiga', {magac, ciwaan, telephone})).data
      alert(data.status)
      }else{
         setAlertM(true)
      }
   }
+  async function clearCart(){
+    const email = sessionStorage.getItem('email')
+    await api.patch('/clear/cart', {email})
+  }
+
  
   async function sendCartOrders(){
     cItems.map(async (item)=>{
-        console.log(item)
-        console.log(item)
         const data = await (await api.post('/dir/dalabyada', {...item, cusName:magac})).data
         alertM(data.status)
     })
@@ -50,11 +61,12 @@ function Checkout({ cItems }) {
         <TextField required placeholder='ciwaankaaga' type='text' onChange={(e)=>setCiwaan(e.target.value)} style={{width:'200px', padding:'10px',fontSize:'100px'}} />
         </Grid>
         
-        <Grid item sm={12} xs={12}>
-          <Button variant='contained' style={{width:'180px', height:'30px'}} onClick={()=>{
-            postDalbadahaXogtiisa()
+        <Grid item sm={12} xs={12} style={{margin:'10px',  width:'300px'}}>
+          <a   variant='contained' style={{ border:'1px solid black',  color:'black', padding:'10px', paddingLeft:"10px", textDecoration:'none', margin:'10px'}} onClick={(e)=>{
+            postDalbadahaXogtiisa(e)
             sendCartOrders()
-          }}>BIXI</Button>
+            clearCart()
+          }}>BIXI</a>
           <div style={{marginTop:'10px'}}>
           {/* <Link to='/signUp'>SignUp</Link> */}
           </div>

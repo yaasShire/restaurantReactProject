@@ -69,6 +69,10 @@ function Login() {
           <span style={{marginRight:'10px'}}>akoon malihi:</span>
           <Link to='/signUp'>SignUp</Link>
           </div>
+          <div style={{marginTop:'10px'}}>
+          <Link to='/forgetpassword'>forget password</Link>
+          </div>
+          
         </Grid>
     </Grid>
       {/* </CardContent> */}

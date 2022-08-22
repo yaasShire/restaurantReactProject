@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { api } from './COMPONENTS/axiosSetup';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from './PAGES/Dashboard/Dashboard';
+import Diiwaangeli from './PAGES/Dashboard/Diiwaangeli';
 import PanelAd from './COMPONENTS/Panel/PanelAd';
 import Products from './COMPONENTS/Products/Products';
 import SignUp from './COMPONENTS/AUTHENTICATION/SIGNUP/SignUp';
@@ -11,7 +11,10 @@ import Checkout from './PAGES/Checkout/Checkout';
 import AdminOrders from './PAGES/ORDERHANDLER/AdminOrders';
 import FulfilledOr from './PAGES/FulfilledOrders/FulfilledOr';
 import Navigation from './COMPONENTS/ModernNavigation/Navigation';
+import MaamulBadeeco from './PAGES/MAAMULBADEECADA/MaamulBadeeco';
 import Home from './PAGES/Homepage/Home';
+import History from './PAGES/CustomerHistory/History';
+import ForgetPassword from './PAGES/ForgetPassword/ForgetPassword';
 function App() {
   const [products, setProducts] = useState([])
   async function getAllProducts(){
@@ -63,16 +66,17 @@ function App() {
       {/* { sessionStorage.getItem('email') &&} */}
       <Route path="/panel" element={<PanelAd />} />
       <Route path="/adminOrders" element={<AdminOrders />} />
-      <Route path="/diiwaangelinta" element={<Dashboard />} />
-      <Route path="/products" element={<Dashboard />} />
+      <Route path="/diiwaangelinta" element={<Diiwaangeli />} />
+      {/* <Route path="/products" element={<Dashboard />} /> */}
       <Route path="/badeeco" element={<Products products={products} getCartItem={getCartItem} />} />
       <Route path="/cart" element={<Cart getTotal={getTotal} total={total} updateQuantity={updateQuantity} cItem={cItems} removeItem={removeItem} />} /> 
-      <Route path="/checkout" element={<Checkout cItems={cItems} />} />
+      <Route path="/checkout" element={<Checkout cItems={cItems} total={total} getTotal={getTotal} />} />
       <Route path="/fullFilled" element={<FulfilledOr  />} />
-      <Route path="/Navigation" element={<Navigation  />} />
+      {/* <Route path="/Navigation" element={<Navigation  />} /> */}
       <Route path="/home" element={<Home  />} />
-      
-
+      <Route path="/maamulBadeeco" element={<MaamulBadeeco  />} />
+      <Route path="/history" element={<History  />} />  
+      <Route path="/forgetpassword" element={<ForgetPassword  />} />  
       </Routes>
     </Router>
   )

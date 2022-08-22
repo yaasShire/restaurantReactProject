@@ -6,9 +6,13 @@ import { api } from '../../COMPONENTS/axiosSetup';
 import OrderedProducts from './OrderedProducts';
 import DeleteIcon from '@material-ui/icons/Delete'
 import DoneIcon from '@material-ui/icons/Done'
+import Navbar from '../../COMPONENTS/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 // import  getName  from './OrderedProducts'
 function AdminOrders() {
+  if(sessionStorage.getItem('email') != 'admin@gmail.com') {
+    window.location.replace('/')
+  }
   const [orders, setOrders] = useState([])
 
   const [customer, setCustomers] = useState([])
@@ -38,11 +42,7 @@ const [q, setQ] = useState(0)
 
 
 const images = importAll(require.context('../../IMAGES', false, /\.(png|jpe?g|svg)$/));
-if(sessionStorage.getItem('email') === 'admin'){
-  return;
- }else{
-   window.location.replace('/')
- }
+
 
 // const [totalV, setTotalV] = useState([])
 function ORDERS({name}){
@@ -111,17 +111,27 @@ function ORDERS({name}){
     alert(data.status)
    }
  }
+ if(!customer.length){
+  return (
+  <>
+    <Navbar />
+   <Typography variant='h4' align='center' style={{marginTop:'100px'}}>WAX DALAB AH MA JIRAAN.</Typography>
+  </>
+
+  )
+ }
 
 
 
   return (
-    <div>
-      <Grid container style={{marginTop:'100px'}}>
+    <>
+    <Navbar />
+    <div style={{height:'900px' , margin:'30px', overflowY:'scroll'}}>
+      <Grid container style={{marginTop:'40px'}}>
         <Grid item sm={12} xs={12} gutterBottom style={{margin:'50px', position:'absolute', right:'10px', top:'20px'}} >
-          <Link  variant='outlined' style={{textDecoration:'none', fontSize:'18px', background:'black', color:'white',  borderRadius:'5px', padding:'8px'}} to='/fullFilled'>DALABYADA LA FULIYAY</Link>
         </Grid>
         <Grid item sm={12} xs={12} gutterBottom style={{margin:'50px'}}>
-            <Typography variant="h5" align='center'>DALABYADA</Typography>
+            <Typography variant="h3" align='center'>DALABYADA</Typography> <hr style={{width:'200px'}} />
         </Grid>
         
         {customer.map((cus, index)=>{
@@ -134,6 +144,7 @@ function ORDERS({name}){
          }}>FULIYAY</Button>
             <Typography variant='h4'>{cus.magac}</Typography>
             <Typography variant='h5'>{cus.telephone}</Typography>
+            <Typography variant='h6'>Taariikh : { new Date(cus.taariikh).toLocaleDateString()}</Typography>
             <ORDERS name={cus.magac} />
             <DeleteIcon variant='contained' color='danger' style={{fontSize:'30px'}} onClick={()=>{
               deleteCusOrder(cus.id)
@@ -149,6 +160,7 @@ function ORDERS({name}){
       
       </Grid>
     </div>
+    </>
   )
 }
 
