@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.edd3c17f.css",
-    "main.js": "/static/js/main.ac6e2c0c.js",
+    "main.js": "/static/js/main.0b473bcc.js",
     "static/js/787.c719480c.chunk.js": "/static/js/787.c719480c.chunk.js",
     "static/media/JAZIIRA.png": "/static/media/JAZIIRA.490f95a9c6d32a68a1ae.png",
     "static/media/foodBackgroundImage.jpg": "/static/media/foodBackgroundImage.8a470e9829ce70ebce84.jpg",
@@ -13,11 +13,11 @@
     "static/media/fp_image.jpg": "/static/media/fp_image.f89c8b0dbfe6146d77c1.jpg",
     "index.html": "/index.html",
     "main.edd3c17f.css.map": "/static/css/main.edd3c17f.css.map",
-    "main.ac6e2c0c.js.map": "/static/js/main.ac6e2c0c.js.map",
+    "main.0b473bcc.js.map": "/static/js/main.0b473bcc.js.map",
     "787.c719480c.chunk.js.map": "/static/js/787.c719480c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.edd3c17f.css",
-    "static/js/main.ac6e2c0c.js"
+    "static/js/main.0b473bcc.js"
   ]
 }

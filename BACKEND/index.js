@@ -91,7 +91,8 @@ app.get('/api/v1/get/cart/items', (req, res)=>{
 })
 app.put('/api/v1/update/cart/quantity', (req, res)=>{
     const data = req.body
-    const sql = `UPDATE cart set quantity = ${data.quantity} WHERE magaca = '${data.magaca}';`
+    console.log(data)
+    const sql = `UPDATE cart set quantity = ${data.realQuantity} WHERE magaca = '${data.magaca}';`
     conn.query(sql, (err)=>{
         if(err) throw err
     })

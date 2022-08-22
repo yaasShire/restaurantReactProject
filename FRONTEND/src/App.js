@@ -56,7 +56,8 @@ function App() {
    getTotal()
  }, [])
  async function updateQuantity(magaca, quantity){
-   const data =  await (await api.put('/update/cart/quantity', {magaca, quantity})).data
+  const realQuantity = quantity == ''? 1 : Number(quantity)
+   const data =  await (await api.put('/update/cart/quantity', {magaca, realQuantity})).data
  }
   return (
     <Router>

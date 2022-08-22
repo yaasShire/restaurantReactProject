@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Button, Card, CardActions, CardContent, CardMedia } from '@material-ui/core';
 
 import useStyles from './style'
@@ -15,6 +15,9 @@ function importAll(r) {
     return images;
   }
   const [q, setQ] = useState(0)
+  useEffect(()=>{
+    setQ(Number(JSON.parse(sessionStorage.getItem('total'))))
+  }, [])
  
   
   const images = importAll(require.context('../../../IMAGES', false, /\.(png|jpe?g|svg)$/));
@@ -28,16 +31,14 @@ const [message, setMessage] = useState('')
       </CardContent>
       <CardActions className={classes.cardActions}>
         <div className={classes.buttons}>
-          <input value={q || item.quantity } type="number" style={{width:'60px'}} onChange={(e)=>{
-                 if(e.target.value <0){
-                    e.target.value=1
-
-                 }else{
+          <input  type="number" style={{width:'60px'}} onChange={(e)=>{
+            
                     updateQuantity(item.magaca, e.target.value)
                     getTotal()
+                    sessionStorage.setItem('total', JSON.stringify(e.target.value))
                     setQ(e.target.value)
                     
-                 }
+                 
           }} />
         </div>
         <Button variant="contained" type="button" color="secondary" onClick={(e)=>{
