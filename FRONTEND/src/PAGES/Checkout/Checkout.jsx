@@ -19,8 +19,7 @@ function Checkout({ cItems, getTotal, total }) {
   }, [])
   async function postDalbadahaXogtiisa(e){
     if((magac !='' && ciwaan !='') && telephone !=''){
-       e.target.href='tel:*712*610941595*' +{total} + '#'
-       console.log(total)
+       e.target.href='tel:*712*610941595*' + total + '#'
      const data =   await( await api.post('/xogta/dalbadaha/rasmiga', {magac, ciwaan, telephone})).data
      alert(data.status)
      }else{
