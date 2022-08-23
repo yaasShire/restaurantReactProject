@@ -66,11 +66,11 @@ function Login() {
             findTargetUser()
           }}>Login</Button>
           <div style={{marginTop:'10px'}}>
-          <span style={{marginRight:'10px'}}>akoon malihi:</span>
-          <Link to='/signUp'>SignUp</Link>
+          <span style={{marginRight:'10px', fontSize:'20px', fontWeight:'bold'}}>akoon malihi:</span>
+          <Link to='/signUp' style={{textDecoration:"none", fontSize:'19px'}}>SignUp</Link>
           </div>
-          <div style={{marginTop:'10px'}}>
-          <Link to='/forgetpassword'>forget password</Link>
+          <div style={{marginTop:'10px', textDecoration:"none"}}>
+          <Link to='/forgetpassword' style={{textDecoration:"none", fontSize:'19px'}}>forget password</Link>
           </div>
           
         </Grid>
