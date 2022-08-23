@@ -15,6 +15,7 @@ import MaamulBadeeco from './PAGES/MAAMULBADEECADA/MaamulBadeeco';
 import Home from './PAGES/Homepage/Home';
 import History from './PAGES/CustomerHistory/History';
 import ForgetPassword from './PAGES/ForgetPassword/ForgetPassword';
+import Category from './PAGES/CATEGORY/Category';
 function App() {
   const [products, setProducts] = useState([])
   async function getAllProducts(){
@@ -77,7 +78,8 @@ function App() {
       <Route path="/home" element={<Home  />} />
       <Route path="/maamulBadeeco" element={<MaamulBadeeco  />} />
       <Route path="/history" element={<History  />} />  
-      <Route path="/forgetpassword" element={<ForgetPassword  />} />  
+      <Route path="/forgetpassword" element={<ForgetPassword  />} />    
+      <Route path="/category" element={<Category  />} />    
       </Routes>
     </Router>
   )

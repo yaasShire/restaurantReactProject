@@ -19,6 +19,14 @@ export default function Diiwaangeli() {
     // useEffect(()=>{
     //      getSuppliers()
     // }, [])
+    const [nooc, setNooc] = useState([])
+    async function fetchCategory(){
+      const data = await (await api.get('/get/category/items')).data
+      setNooc(data)
+    }
+    useEffect(()=>{
+       fetchCategory()
+    }, [])
     const inputProps = {
         step: 1,
       };
@@ -66,12 +74,12 @@ export default function Diiwaangeli() {
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <select name="category" required style={{width:'auto', height:'40px'}}>
               <option value="">NOOCA</option>
-              <option value="PIZZA">PIZAA</option>
-              <option value="DOORO">DOORO</option>
-              <option value="BARIIS">BARIIS</option>
-              <option value='BAASTO'>BAASTO</option>
-              
-              
+              {nooc.map(nooc=>{
+                return (
+                  <option value={nooc.magaca}>{nooc.magaca}</option>
+
+                )
+              })}
             </select>
           </Grid>
           <Grid item xs={12} sm={12}  md={12} lg={6}>

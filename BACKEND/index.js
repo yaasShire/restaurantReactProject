@@ -282,5 +282,20 @@ app.patch('/api/v1/clear/cart', (req, res)=>{
         if(err) throw err
     })
 })
+app.post('/api/v1/dir/category', (req, res)=>{
+    const data = req.body
+    const sql = `INSERT INTO category(magaca) VALUES('${data.cat}')`
+    conn.query(sql, (err)=>{
+        if(err) throw err
+        res.json({status:true})
+    })
+})
+app.get('/api/v1/get/category/items', (req, res)=>{
+    const sql = 'SELECT distinct(magaca) FROM category;'
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err
+        res.json(result.rows)
+    })
+})
 const port  = process.env.PORT || 2000
 app.listen(port, ()=>console.log(`connected to the port ${port}`))

@@ -52,6 +52,9 @@ const Navbar = () => {
         <Link to='/diiwaangelinta' style={{textDecoration:'none'}}>
         <li  ><a  href="#">DIIWAANGELI BADEECO</a></li>
         </Link> 
+        <Link to='/category' style={{textDecoration:'none'}}>
+        <li  ><a  href="#">DIIWAANGELI NOOCYADA</a></li>
+        </Link> 
         <Link to='/maamulBadeeco' style={{textDecoration:'none'}}>
         <li ><a href="#">MAAMUL BADEECADA</a></li> 
         </Link> 
