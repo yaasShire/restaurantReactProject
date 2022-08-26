@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.3c2891e7.css",
-    "main.js": "/static/js/main.3056b6eb.js",
+    "main.js": "/static/js/main.512f4786.js",
     "static/js/787.c719480c.chunk.js": "/static/js/787.c719480c.chunk.js",
     "static/media/Apple_iPhone-13-Pro_iPhone-13-Pro-Max_09142021_inline.jpg.slideshow-medium_2x.jpg": "/static/media/Apple_iPhone-13-Pro_iPhone-13-Pro-Max_09142021_inline.jpg.slideshow-medium_2x.0c1a6d796ec3771b0ecf.jpg",
     "static/media/JAZIIRA.png": "/static/media/JAZIIRA.490f95a9c6d32a68a1ae.png",
@@ -24,11 +24,11 @@
     "static/media/chicken and chips.jpg": "/static/media/chicken and chips.2c5cb9c43778c64d43d4.jpg",
     "index.html": "/index.html",
     "main.3c2891e7.css.map": "/static/css/main.3c2891e7.css.map",
-    "main.3056b6eb.js.map": "/static/js/main.3056b6eb.js.map",
+    "main.512f4786.js.map": "/static/js/main.512f4786.js.map",
     "787.c719480c.chunk.js.map": "/static/js/787.c719480c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3c2891e7.css",
-    "static/js/main.3056b6eb.js"
+    "static/js/main.512f4786.js"
   ]
 }

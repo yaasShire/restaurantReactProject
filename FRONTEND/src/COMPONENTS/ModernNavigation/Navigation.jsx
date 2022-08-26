@@ -145,7 +145,7 @@ const targetImagee = pImage.length >=1? images[pImage[0].sawir] : userImage
     <form  action="http://18.216.96.47/api/v1/post/user/profile" method='post' encType='multipart/form-data'>
       {openCard && (
         <Card style={{minWidth:'300px', padding:"10px", minHeight:'100px', position:'absolute', right:'60px', top:'70px'}}>
-          <Typography variant='h6' align='left'>signed in as <b>Yusuf Shire</b> </Typography>
+          <Typography variant='h6' align='left'>signed in as <b>{sessionStorage.getItem('email')}</b> </Typography>
           <label style={{cursor:'pointer'}} htmlFor="userImage"><i typeof='file' class="fa-solid fa-upload" accept='.png jpeg, jpg, .tiff'  style={{fontSize:'40px', margin:'20px 10px', cursor:'pointer'}}></i></label>
         <input onChange={(e)=>{
           setOpenCard(true)
