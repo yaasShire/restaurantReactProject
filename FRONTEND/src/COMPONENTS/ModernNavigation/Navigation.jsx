@@ -142,7 +142,7 @@ const targetImagee = pImage.length >=1? images[pImage[0].sawir] : userImage
     </a>
     {open &&
     
-    <form  action="http://localhost:2000/api/v1/post/user/profile" method='post' encType='multipart/form-data'>
+    <form  action="http://18.216.96.47/2000/api/v1/post/user/profile" method='post' encType='multipart/form-data'>
       {openCard && (
         <Card style={{minWidth:'300px', padding:"10px", minHeight:'100px', position:'absolute', right:'60px', top:'70px'}}>
           <Typography variant='h6' align='left'>signed in as <b>Yusuf Shire</b> </Typography>
