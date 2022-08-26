@@ -4,7 +4,7 @@ import { Card, CardMedia, CardContent, CardActions, IconButton, Paper } from '@m
 import Navigation from '../../COMPONENTS/ModernNavigation/Navigation'
 import { api } from '../../COMPONENTS/axiosSetup';
 function History() {
-  if(sessionStorage.getItem('role') == 'admin') {
+  if(sessionStorage.getItem('email')) {
      
   }else{
     window.location.replace('/')
@@ -57,7 +57,8 @@ function History() {
             <Card style={{display:"flex", justifyContent:'space-around', alignItems:'center', padding:'5px', minWidth:'490px'}}>
             <img src={images[product.image]} alt="" style={{width:"100px", height:'100px', borderRadius:'50%', marginLeft:'30px'}} />
             <Typography variant='h5'>{product.magac}</Typography> <br />
-            <Typography variant='h4'>${product.price}</Typography>
+            <Typography variant='h4'>${product.price}</Typography><br />
+            <Typography variant='h6'>Qty : <b>{product.quantity}</b></Typography>
            
             </Card>
         </Grid>
