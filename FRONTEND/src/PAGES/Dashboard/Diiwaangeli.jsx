@@ -50,7 +50,7 @@ export default function Diiwaangeli() {
     <>
    
     <Navbar />
-    <form action='http://18.216.96.47/2000/api/v1/dir/product' method='post' encType='multipart/form-data' style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', width:'100%', margin:'0', marginLeft:'4px', marginRight:'200px', flexDirection:'column'}}>
+    <form action='http://18.216.96.47/api/v1/dir/product' method='post' encType='multipart/form-data' style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', width:'100%', margin:'0', marginLeft:'4px', marginRight:'200px', flexDirection:'column'}}>
     <Typography  align='center' variant="h4" gutterBottom>DIIWAANGELI </Typography>
     
         <Grid container justify="center" style={{fontSize:'23px', background:"gray", width:'90%', height:'60%', padding:'20px', color:'white', borderRadius:'5px'}} >
