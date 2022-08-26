@@ -1,0 +1,7 @@
+.inputTxtP:focus{
+    border: 0px !important;
+    background-color: yellow !important;
+}
+input:focus{
+    border: 0px;
+}

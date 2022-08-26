@@ -5,11 +5,13 @@ import Navbar from '../../COMPONENTS/Navbar/Navbar';
 import CloseIcon from '@material-ui/icons/Close'
 
 function Category() {
-    if(sessionStorage.getItem('email') != 'admin@gmail.com') {
-        window.location.replace('/')
-      }
+  if(sessionStorage.getItem('role') == 'admin') {
+     
+  }else{
+    window.location.replace('/')
+  }
       const [alertM, setAlertM] = useState(false)
-      const [successM, setSuccessM] = useState(true)
+      const [successM, setSuccessM] = useState(false)
       const [valuee, setValuee] = useState('')
       const [cat, setCat] = useState('')
       async function diiwaangeliNooc(){

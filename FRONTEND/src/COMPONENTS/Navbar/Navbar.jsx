@@ -64,6 +64,9 @@ const Navbar = () => {
         <Link to='/fullFilled' style={{textDecoration:'none'}}>
         <li ><a href="#">DALABYADA LA FULIYAY</a></li> 
         </Link> 
+        <Link to='/adminManage' style={{textDecoration:'none'}}>
+        <li ><a href="#">ADMIN</a></li> 
+        </Link> 
        
         
       </ul>

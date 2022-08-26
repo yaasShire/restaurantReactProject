@@ -17,6 +17,19 @@ const fileStorage = multer.diskStorage({
 const upload = multer({storage:fileStorage})
 
 
+const fileStoragee = multer.diskStorage({
+    destination: (req, file, cb)=>{
+        cb(null, '../FRONTEND/src/ProfileImages')
+    },
+    filename: (req, file, cb)=>{
+        cb(null, file.originalname)
+    }
+})
+const uploadProfile = multer({storage:fileStoragee})
+
+//profile picture storage
+//end profile storage
+
 
 app.use(express.json())
 
@@ -40,7 +53,30 @@ const conn  = new Pool({
 //     if(err) throw err
 //     console.log('database connected.')
 //
+app.post('/api/v1/post/user/profile', uploadProfile.single('profile') ,(req, res)=>{
+    const data = req.body
+    console.log(data)
+    console.log(req.body)
+    console.log(req.file)
 
+     const sql = `INSERT INTO userProfile(sawir, email) VALUES('${req.file.filename}', '${data.email}')`
+     conn.query(sql, (err)=>{
+         if(err) throw err
+         res.send('<h1>XOGTA WAA LA KEYDIYAY SAWIRKA</h1>')
+        })
+})
+app.post('/api/v1/post/user/profile/update', uploadProfile.single('profile') ,(req, res)=>{
+    const data = req.body
+    console.log(data)
+    console.log(req.body)
+    console.log(req.file)
+
+     const sql = `UPDATE userProfile SET sawir = '${req.file.filename}'  WHERE email = '${data.email}')`
+     conn.query(sql, (err)=>{
+         if(err) throw err
+         res.send('<h1>XOGTA WAA LA KEYDIYAY SAWIRKA</h1>')
+        })
+})
 app.post('/api/v1/dir/product', upload.single('sawir'), (req, res)=>{
     const data = req.body
     console.log(data.category)
@@ -121,6 +157,7 @@ app.post('/api/v1/xogta/dalbadaha/rasmiga', (req, res)=>{
 })
 app.post('/api/v1/dir/dalabyada', (req, res)=>{
     const data = req.body
+    console.log(data.quantity)
     const sql = `INSERT INTO orders(magac, quantity, price, email, cusName, image) VALUES('${data.magaca}', ${data.quantity}, ${data.price}, '${data.email}', '${data.cusName}', '${data.image}');`
     conn.query(sql, (err)=>{
         if(err) throw err
@@ -295,6 +332,54 @@ app.get('/api/v1/get/category/items', (req, res)=>{
     conn.query(sql, (err, result, field)=>{
         if(err) throw err
         res.json(result.rows)
+    })
+})
+app.post('/api/v1/dir/admin/users', (req, res)=>{
+    const data = req.body
+    const sql = `INSERT INTO customers(magac, ciwaan, telephone, email, password, role) VALUES('${data.magac}', '${data.ciwaan}', '${data.telephone}', '${data.email}', '${data.password}', '${data.role}')`
+    conn.query(sql, (err)=>{
+        if(err) throw err
+        res.json({status:true})
+    })
+
+})
+app.get('/api/v1/get/admin', (req, res)=>{
+    const sql = "SELECT * FROM customers WHERE role = 'admin'";
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err
+        res.json(result.rows)
+    })
+})
+app.put('/api/v1/post/admin/updates', (req, res)=>{
+    const data = req.body
+    const sql = `UPDATE customers SET magac = '${data.magac}',  ciwaan = '${data.ciwaan}', telephone ='${data.telephone}', email='${data.email}', password='${data.password}' WHERE id = ${data.id} `
+    conn.query(sql, (err)=>{
+        if(err) throw err
+        res.json({status:true})
+    })
+})
+app.patch('/api/v1/delete/admin', (req, res)=>{
+    const data = req.body
+    const sql = `DELETE FROM customers WHERE id = ${data.id}`
+    conn.query(sql, (err)=>{
+        if(err) throw err
+        res.json({status:true})
+    })
+})
+
+app.get('/api/v1/get/user/profile', (req, res)=>{
+    const sql = 'SELECT  sawir, email FROM userProfile GROUP BY sawir, email;'
+    conn.query(sql, (err, result, field)=>{
+        if(err) throw err
+        res.json(result.rows)
+    })
+})
+app.patch('/api/v1/delete/user/profile', (req, res)=>{
+    const data = req.body
+    const sql = `DELETE FROM userProfile WHERE email = '${data.email}'`
+    conn.query(sql, (err)=>{
+        if(err) throw err
+        res.json({status:true})
     })
 })
 const port  = process.env.PORT || 2000

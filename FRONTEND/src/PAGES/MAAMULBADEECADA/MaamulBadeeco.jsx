@@ -8,16 +8,20 @@ import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save'
 import CloseIcon from '@material-ui/icons/Close'
 import { Edit } from '@material-ui/icons';
+import EditForm from './EditForm';
+import NormalState from './NormalState';
 function MaamulBadeeco() {
-    if(sessionStorage.getItem('email') != 'admin@gmail.com') {
-        window.location.replace('/')
-      }
+  if(sessionStorage.getItem('role') == 'admin') {
+     
+  }else{
+    window.location.replace('/')
+  }
+  const [q, setQ] = useState(0)
     function importAll(r) {
         let images = {};
         r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
         return images;
       }
-      const [q, setQ] = useState(0)
       
       
       const images = importAll(require.context('../../IMAGES', false, /\.(png|jpe?g|svg)$/));
@@ -30,31 +34,16 @@ function MaamulBadeeco() {
         getProducts()
     }, [])
     const [showForm, setShowForm] = useState(false)
-    const [magac, setMagac] = useState('')
-    const [price, setPrice] = useState(0)
+
     const [targetProduct, setTargetProduct] = useState([])
    function filterProducts(id){
     const newProduct = products.filter(product=> product.id == id)
     setTargetProduct(newProduct)
-    setMagac(newProduct[0].magac)
-    setPrice(newProduct[0].price)
+
    }
    const [alertM, setAlertM] = useState(false)
 const [targetId, setTargetId] = useState(0)
-   async function saveUpdates(){
-    if((magac !='' && price !=0) && (targetId !=0)){
-       const data =  await (await api.put('/badal/magac/price', {magac, price, id:targetId})).data
-       if(data.status){
-        setTimeout(()=>{
-            setShowForm(false)
-            targetProduct.pop()
-            getProducts()
-         }, 2000)
-       }
-    }else{
-        setAlertM(true)
-       }
-   }
+ 
 
    async function deleteProduct(id){
        const data = await api.patch('/delete/maamul/badeeco/tirtir', {id})
@@ -65,50 +54,50 @@ const [targetId, setTargetId] = useState(0)
        }
    }
 
-    function EditForm(){
-      return (
-        <Grid item xs={12} sm={12 } style={{display:"flex", padding:'10px', justifyContent:'center'}}>
-            <Card style={{display:'flex', width:'100vw', height:'100px', padding:'10px', justifyContent:'center', alignItems:'center'}}>
-                <div>
-        <input value={magac} onChange={(e)=>{
-            setMagac(e.target.value)
-        }} type="text" style={{width:'200px', height:'40px', fontSize:'20px', borderRadius:'20px', padding:'9px'}} />
-        <input value={price} onChange={(e)=>{
-            setPrice(e.target.value)
-        }}  type="number" style={{width:'70px', margin:'4px 10px', fontSize:'20px',  height:'27px', padding:'9px'}}  />
+    // function EditForm(){
+    //   return (
+    //     <Grid item xs={12} sm={12 } style={{display:"flex", padding:'10px', justifyContent:'center'}}>
+    //         <Card style={{display:'flex', width:'100vw', height:'100px', padding:'10px', justifyContent:'center', alignItems:'center'}}>
+    //             <div>
+    //     <input value={magac} onChange={(e)=>{
+    //         setMagac(e.target.value)
+    //     }} type="text" style={{width:'200px', height:'40px', fontSize:'20px', borderRadius:'20px', padding:'9px'}} />
+    //     <input value={price} onChange={(e)=>{
+    //         setPrice(e.target.value)
+    //     }}  type="number" style={{width:'70px', margin:'4px 10px', fontSize:'20px',  height:'27px', padding:'9px'}}  />
 
-                </div>
+    //             </div>
                     
-        <div>
-        <SaveIcon style={{cursor:'pointer'}} onClick={()=>{
-            saveUpdates()
+    //     <div>
+    //     <SaveIcon style={{cursor:'pointer'}} onClick={()=>{
+    //         saveUpdates()
            
-        }} />
+    //     }} />
 
-        </div>
-            </Card>
-        </Grid>
-      )
-    }
-    function NormalState({ product }){
-        return (
-            <Grid item xs={12} sm={12 } style={{display:"flex", padding:'10px', justifyContent:'center'}}>
-            <Card style={{display:"flex", justifyContent:'space-around', alignItems:'center', padding:'5px', minWidth:'490px'}}>
-            <img src={images[product.image]} alt="" style={{width:"100px", height:'100px', borderRadius:'50%', marginLeft:'30px'}} />
-            <Typography variant='h5'>{product.magac}</Typography> <br />
-            <Typography variant='h4'>${product.price}</Typography>
-            <EditIcon style={{cursor:'pointer', fontSize:'30px', color:'blue'}} onClick={()=>{
-                setShowForm(true)
-                filterProducts(product.id)
-                setTargetId(Number(product.id))
-            }} /> <br />
-            <DeleteIcon style={{cursor:'pointer', color:'red', fontSize:'30px'}} onClick={()=>{
-                deleteProduct(Number(product.id))
-            }} />
-            </Card>
-        </Grid>
-        )
-    }
+    //     </div>
+    //         </Card>
+    //     </Grid>
+    //   )
+    // }
+    // function NormalState({ product }){
+    //     return (
+    //         <Grid item xs={12} sm={12 } style={{display:"flex", padding:'10px', justifyContent:'center'}}>
+    //         <Card style={{display:"flex", justifyContent:'space-around', alignItems:'center', padding:'5px', minWidth:'490px'}}>
+    //         <img src={images[product.image]} alt="" style={{width:"100px", height:'100px', borderRadius:'50%', marginLeft:'30px'}} />
+    //         <Typography variant='h5'>{product.magac}</Typography> <br />
+    //         <Typography variant='h4'>${product.price}</Typography>
+    //         <EditIcon style={{cursor:'pointer', fontSize:'30px', color:'blue'}} onClick={()=>{
+    //             setShowForm(true)
+    //             filterProducts(product.id)
+    //             setTargetId(Number(product.id))
+    //         }} /> <br />
+    //         <DeleteIcon style={{cursor:'pointer', color:'red', fontSize:'30px'}} onClick={()=>{
+    //             deleteProduct(Number(product.id))
+    //         }} />
+    //         </Card>
+    //     </Grid>
+    //     )
+    // }
     const newList = targetProduct.length>=1? targetProduct:  products
     console.log(targetProduct)
 
@@ -122,7 +111,7 @@ const [targetId, setTargetId] = useState(0)
       </Grid>
         {newList.map(product=>{
             return (
-       !showForm ? <NormalState product={product} /> : <EditForm  />
+       !showForm ? <NormalState setShowForm={setShowForm} deleteProduct={deleteProduct} setTargetId={setTargetId} filterProducts={filterProducts} product={product} /> : <EditForm setShowForm={setShowForm} getProducts={getProducts} targetProduct={targetProduct} targetId={targetId} setAlertM={setAlertM}  product={product}    />
             )
         })}
       </Grid>

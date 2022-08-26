@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import { api } from '../../COMPONENTS/axiosSetup';
 
 import useStyles from './style'
-function Checkout({ cItems, getTotal, total }) {
+function Checkout({ cItems, getTotal, total, getCartItem }) {
   if(!sessionStorage.getItem('email')){
     window.location.replace('/')
  }
@@ -16,6 +16,7 @@ function Checkout({ cItems, getTotal, total }) {
   const [telephone, setTelephone] = useState('')
   useEffect(()=>{
       getTotal()
+      getCartItem()
   }, [])
   async function postDalbadahaXogtiisa(e){
     if((magac !='' && ciwaan !='') && telephone !=''){
@@ -34,6 +35,7 @@ function Checkout({ cItems, getTotal, total }) {
  
   async function sendCartOrders(){
     cItems.map(async (item)=>{
+      console.log(item)
         const data = await (await api.post('/dir/dalabyada', {...item, cusName:magac})).data
         alertM(data.status)
     })

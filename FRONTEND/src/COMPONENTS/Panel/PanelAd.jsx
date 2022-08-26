@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
  
 
 function PanelAd() {
-  if(sessionStorage.getItem('email') == 'admin@gmail.com') {
+  if(sessionStorage.getItem('role') == 'admin') {
      
   }else{
     window.location.replace('/')

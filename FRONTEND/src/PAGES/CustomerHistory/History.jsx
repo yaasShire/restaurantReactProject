@@ -4,6 +4,11 @@ import { Card, CardMedia, CardContent, CardActions, IconButton, Paper } from '@m
 import Navigation from '../../COMPONENTS/ModernNavigation/Navigation'
 import { api } from '../../COMPONENTS/axiosSetup';
 function History() {
+  if(sessionStorage.getItem('role') == 'admin') {
+     
+  }else{
+    window.location.replace('/')
+  }
     const [taariikh, setTaariikh] = useState('')
     const [orders, setOrders] = useState([])
     const [targetOrders, setTargetOrders] = useState([])

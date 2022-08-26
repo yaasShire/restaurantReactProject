@@ -43,6 +43,7 @@ const [message, setMessage] = useState('')
         </div>
         <Button variant="contained" type="button" color="secondary" onClick={(e)=>{
             removeItem(item.id)
+            getTotal()
            
         }}>Remove</Button>
       </CardActions>

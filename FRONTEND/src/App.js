@@ -16,6 +16,7 @@ import Home from './PAGES/Homepage/Home';
 import History from './PAGES/CustomerHistory/History';
 import ForgetPassword from './PAGES/ForgetPassword/ForgetPassword';
 import Category from './PAGES/CATEGORY/Category';
+import AdminPage from './PAGES/AdminManagement/AdminPage';
 function App() {
   const [products, setProducts] = useState([])
   async function getAllProducts(){
@@ -71,8 +72,8 @@ function App() {
       <Route path="/diiwaangelinta" element={<Diiwaangeli />} />
       {/* <Route path="/products" element={<Dashboard />} /> */}
       <Route path="/badeeco" element={<Products products={products} getCartItem={getCartItem} />} />
-      <Route path="/cart" element={<Cart getTotal={getTotal} total={total} updateQuantity={updateQuantity} cItem={cItems} removeItem={removeItem} />} /> 
-      <Route path="/checkout" element={<Checkout cItems={cItems} total={total} getTotal={getTotal} />} />
+      <Route path="/cart" element={<Cart getCartItem={getCartItem} getTotal={getTotal} total={total} updateQuantity={updateQuantity} cItem={cItems} removeItem={removeItem} />} /> 
+      <Route path="/checkout" element={<Checkout getCartItem={getCartItem} cItems={cItems} total={total} getTotal={getTotal} />} />
       <Route path="/fullFilled" element={<FulfilledOr  />} />
       {/* <Route path="/Navigation" element={<Navigation  />} /> */}
       <Route path="/home" element={<Home  />} />
@@ -80,6 +81,7 @@ function App() {
       <Route path="/history" element={<History  />} />  
       <Route path="/forgetpassword" element={<ForgetPassword  />} />    
       <Route path="/category" element={<Category  />} />    
+      <Route path="/adminManage" element={<AdminPage  />} />    
       </Routes>
     </Router>
   )

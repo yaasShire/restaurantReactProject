@@ -4,7 +4,9 @@ import { TextField, InputLabel, Container, Grid, Button, Typography, Paper } fro
 import { api } from '../../COMPONENTS/axiosSetup';
 import Navbar from '../../COMPONENTS/Navbar/Navbar';
 export default function Diiwaangeli() {
-  if(sessionStorage.getItem('email') != 'admin@gmail.com') {
+  if(sessionStorage.getItem('role') == 'admin') {
+     
+  }else{
     window.location.replace('/')
   }
     // const [magac, setMagac] = useState('')
@@ -48,7 +50,7 @@ export default function Diiwaangeli() {
     <>
    
     <Navbar />
-    <form action='http://18.216.96.47/api/v1/dir/product' method='post' encType='multipart/form-data' style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', width:'100%', margin:'0', marginLeft:'4px', marginRight:'200px', flexDirection:'column'}}>
+    <form action='http://localhost:2000/api/v1/dir/product' method='post' encType='multipart/form-data' style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', width:'100%', margin:'0', marginLeft:'4px', marginRight:'200px', flexDirection:'column'}}>
     <Typography  align='center' variant="h4" gutterBottom>DIIWAANGELI </Typography>
     
         <Grid container justify="center" style={{fontSize:'23px', background:"gray", width:'90%', height:'60%', padding:'20px', color:'white', borderRadius:'5px'}} >
@@ -58,7 +60,7 @@ export default function Diiwaangeli() {
           </Grid>
           <Grid  item xs={12} sm={6} md={4} style={{display:'flex', flexDirection:'column'}}  >
             <label htmlFor="qiimahaSheygiiba">Qiimaha Sheygiiba</label>
-          <input  type="number" name='qiimahaSheygiiba' required style={{width:'300px', height:'40px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
+          <input  type="number" step='0.1' name='qiimahaSheygiiba' required style={{width:'300px', height:'40px', padding:'6px', fontSize:'17px', borderRadius:'5px'}} />
           </Grid>
           <Grid item xs={12} sm={6} md={4} style={{display:'flex', flexDirection:'column'}} >
             <label htmlFor="tirada">Tirada</label>

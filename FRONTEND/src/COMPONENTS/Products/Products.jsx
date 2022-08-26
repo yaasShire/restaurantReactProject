@@ -10,7 +10,6 @@ import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Button } from '@mat
 import { Link } from 'react-router-dom'
 import { ShoppingCart } from '@material-ui/icons';
 import Navigation from '../ModernNavigation/Navigation'
-console.log(sessionStorage.getItem('email'))
 const Products = ({ products, getCartItem }) => {
   const [total, setTotal] = useState(0)
   async function getTotalQuantity(){
@@ -23,7 +22,7 @@ const Products = ({ products, getCartItem }) => {
      getTotalQuantity()
   }, [])
   const classes = useStyles();
-console.log(products)
+
   if (!products.length) return <p>Loading...</p>;
 if(sessionStorage.getItem('email')){
   
@@ -35,7 +34,7 @@ if(sessionStorage.getItem('email')){
     <Navigation style />
     <main className={classes.content}>
          {location.pathname === '/badeeco' && (
-          <div className={classes.button} style={{position:'fixed', right:'10px', top:'50px', color:'red', width:'50px', height:'50px' }}>
+          <div className={classes.button} style={{position:'fixed', right:'90px', top:'50px', color:'red', width:'50px', height:'50px' }}>
             <IconButton component={Link} to="/cart" style={{marginRight:'100px'}} aria-label="Show cart items" color="inherit" onClick={()=>{
               getCartItem()
             }}>

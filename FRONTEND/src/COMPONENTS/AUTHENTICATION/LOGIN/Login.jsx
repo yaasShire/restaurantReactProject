@@ -32,6 +32,7 @@ function Login() {
         const targetUser = users.find(user=> user.email == email && user.password == password)
         if(targetUser){
             sessionStorage.setItem('email', targetUser.email)
+            sessionStorage.setItem('role', targetUser.role)
            window.location.replace('/home')
         }else{
                    setAlertM(true)

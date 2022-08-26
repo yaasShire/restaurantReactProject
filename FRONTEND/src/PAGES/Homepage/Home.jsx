@@ -5,7 +5,7 @@ import HomeFoto from './foodBackgroundImage.jpg'
 import LocalPizzaIcon from '@material-ui/icons/LocalPizza'
 import { ShoppingCart } from '@material-ui/icons';
 import { Link } from 'react-router-dom'
-
+import grayFoodImage from  './grayFoodImage.jpg'
 import chickenIcon from '@material-ui/icons/'
 // import IMAGES from '../../IMAGES'
 
@@ -95,12 +95,12 @@ function Home() {
             fontSize:{lg:'60px', xs:'20px'}
         }}  variant='h4' style={{fontWeight:'3000', wordSpacing:'10px', fontFamily:'Indie Flower', fontStyle:'italic'}}> <span >DALBO CUNNO DHADHAN LEH</span>  <br /> <span style={{color:'red'}}>OO SI DHAQSA AHNA KU HEL DALABKAAGA</span> </Typography>
         </Grid>
-        <Grid item item xs={12} sm={6}>
-            <Card style={{}} sx={{
+        <Grid item  xs={12} sm={6} style={{border:'0px'}}>
+            {/* <Card style={{border:'0'}} sx={{
                 width:{lg:'700px', xs:'170px'}
-            }}>
-          <img src= {HomeFoto} alt=""  />      
-            </Card>       
+            }}> */}
+          <img src= {grayFoodImage} alt="" style={{width:'100%', border:'0px solid black',  boxShadow: '0 0 8px 8px white inset' }}  />      
+            {/* </Card>        */}
         </Grid>
         <Grid item item xs={12} sm={12}>
             <Typography variant='h5' style={{fontSize:'30px', fontFamily:'sans-serif'}} >
@@ -113,10 +113,10 @@ function Home() {
         </Grid>
       </Grid>
       <Grid container spacing={10} align='center' style={{marginRight:'100px'}}>
-      <Grid item style={{cursor:'pointer'}} xs={4} sm={3} onClick={()=>{
+      <Grid item style={{cursor:'pointer' , margin:"8px"}} xs={4} sm={3} onClick={()=>{
             getTargetProducts('all')
         }}>
-            <Card style={{width:'110px', height:'100px', background:'gray'}}>
+            <Card style={{width:'140px', height:'100px', background:'gray' , margin:"8px"}}>
             <Typography style={{fontSize:'20px', color:'white', fontWeight:'bold'}}>DHAMAAN</Typography>          
            
             <i class="fa-solid fa-utensils" style={{fontSize:"60px", color:'yellow'}}></i>
@@ -124,10 +124,10 @@ function Home() {
         </Grid>
         {categories.map(cat=>{
             return(
-        <Grid item style={{cursor:'pointer'}} xs={4} sm={3} onClick={()=>{
+        <Grid item style={{cursor:'pointer', margin:"8px"}} xs={4} sm={3 } onClick={()=>{
             getTargetProducts(cat.category)
         }}>
-            <Card style={{width:'100px', height:'100px', background:'gray'}}>
+            <Card style={{width:'140px', padding:"6px", height:'100px', background:'gray'}}>
             <Typography style={{fontSize:'20px', color:'white', fontWeight:'bold'}}>{cat.category}</Typography>          
            
             <i class="fa-solid fa-utensils" style={{fontSize:"60px", color:'yellow'}}></i>

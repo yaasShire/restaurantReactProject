@@ -8,7 +8,9 @@ import DoneIcon from '@material-ui/icons/Done'
 import Navbar from '../../COMPONENTS/Navbar/Navbar';
 // import  getName  from './OrderedProducts'
 function FulfilledOr() {
-  if(sessionStorage.getItem('email') != 'admin@gmail.com') {
+  if(sessionStorage.getItem('role') == 'admin') {
+     
+  }else{
     window.location.replace('/')
   }
   const [orders, setOrders] = useState([])
@@ -91,7 +93,7 @@ function ORDERS({name}){
    const data =  await (await api.patch('/delete/cus/fulfilled/order', {id})).data
 
    if(data.status){
-    alert(data.status)
+   
    }
  }
 

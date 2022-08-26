@@ -1,23 +1,34 @@
 {
   "files": {
-    "main.css": "/static/css/main.edd3c17f.css",
-    "main.js": "/static/js/main.8ae80de3.js",
+    "main.css": "/static/css/main.3c2891e7.css",
+    "main.js": "/static/js/main.3b5ea586.js",
     "static/js/787.c719480c.chunk.js": "/static/js/787.c719480c.chunk.js",
+    "static/media/Apple_iPhone-13-Pro_iPhone-13-Pro-Max_09142021_inline.jpg.slideshow-medium_2x.jpg": "/static/media/Apple_iPhone-13-Pro_iPhone-13-Pro-Max_09142021_inline.jpg.slideshow-medium_2x.0c1a6d796ec3771b0ecf.jpg",
     "static/media/JAZIIRA.png": "/static/media/JAZIIRA.490f95a9c6d32a68a1ae.png",
+    "static/media/YUSUF.jpeg": "/static/media/YUSUF.d9d98288ffec716a9580.jpeg",
     "static/media/foodBackgroundImage.jpg": "/static/media/foodBackgroundImage.8a470e9829ce70ebce84.jpg",
-    "static/media/baris doro.jpg": "/static/media/baris doro.1ab10f50fd2d92b937dd.jpg",
     "static/media/7.jpg": "/static/media/7.7457fa7029bf0ab15a12.jpg",
+    "static/media/Best-Smartwatches-for-iPhone-IOS.jpg": "/static/media/Best-Smartwatches-for-iPhone-IOS.5899f192105bfc1aec58.jpg",
+    "static/media/airpods-third-gen-product.jpg": "/static/media/airpods-third-gen-product.4e35af9c8047e44fc065.jpg",
+    "static/media/baasto iyo dooro.jpg": "/static/media/baasto iyo dooro.e77bdf5cb81ab7bc231d.jpg",
     "static/media/3.jpg": "/static/media/3.5338d085000ca920c7ff.jpg",
     "static/media/51CBsScm8HL._SL500_.jpg": "/static/media/51CBsScm8HL._SL500_.0509e2cf97d7a5220c03.jpg",
+    "static/media/JAMAAL.jpeg": "/static/media/JAMAAL.796ac1c51ab1f4166872.jpeg",
     "static/media/pizza.jpg": "/static/media/pizza.3126ec3c204386c43535.jpg",
+    "static/media/baris doro.jpg": "/static/media/baris doro.ab9953ad1c5a29ab99e8.jpg",
     "static/media/fp_image.jpg": "/static/media/fp_image.f89c8b0dbfe6146d77c1.jpg",
+    "static/media/baasto.jpg": "/static/media/baasto.43021a5181d572f067e8.jpg",
+    "static/media/bariis.jpg": "/static/media/bariis.dc18865f5f9ea147e3f9.jpg",
+    "static/media/bariis iyo dooro.jpg": "/static/media/bariis iyo dooro.44c44fa71e236b03ef22.jpg",
+    "static/media/grayFoodImage.jpg": "/static/media/grayFoodImage.e1e9d5c84919e12989dc.jpg",
+    "static/media/chicken and chips.jpg": "/static/media/chicken and chips.2c5cb9c43778c64d43d4.jpg",
     "index.html": "/index.html",
-    "main.edd3c17f.css.map": "/static/css/main.edd3c17f.css.map",
-    "main.8ae80de3.js.map": "/static/js/main.8ae80de3.js.map",
+    "main.3c2891e7.css.map": "/static/css/main.3c2891e7.css.map",
+    "main.3b5ea586.js.map": "/static/js/main.3b5ea586.js.map",
     "787.c719480c.chunk.js.map": "/static/js/787.c719480c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.edd3c17f.css",
-    "static/js/main.8ae80de3.js"
+    "static/css/main.3c2891e7.css",
+    "static/js/main.3b5ea586.js"
   ]
 }

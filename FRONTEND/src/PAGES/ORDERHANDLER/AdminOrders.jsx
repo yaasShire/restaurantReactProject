@@ -10,7 +10,9 @@ import Navbar from '../../COMPONENTS/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 // import  getName  from './OrderedProducts'
 function AdminOrders() {
-  if(sessionStorage.getItem('email') != 'admin@gmail.com') {
+  if(sessionStorage.getItem('role') == 'admin') {
+     
+  }else{
     window.location.replace('/')
   }
   const [orders, setOrders] = useState([])
@@ -98,7 +100,7 @@ function ORDERS({name}){
       const newList = customer.filter(cus=> cus.id != id)
       setCustomers(newList)
       const data =  await (await api.patch('/delete/fulfilled/orders', {id})).data
-      alert(data.status)
+   
     }, 2000)
  }
 
@@ -108,7 +110,7 @@ function ORDERS({name}){
    const data =  await (await api.patch('/delete/cus/order', {id})).data
 
    if(data.status){
-    alert(data.status)
+    
    }
  }
  if(!customer.length){
